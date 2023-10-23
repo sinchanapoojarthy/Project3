@@ -1,0 +1,118 @@
+HTML+JAVASCRIPT:
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styless.css">
+    <title>Registration Form - VAULTOFCODES</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <div class="title">Registration</div>
+    <form action="#">
+        <div class="user-details">
+            <div class="input-box">
+                <label for="profilePicture">Profile Picture:</label>
+                <input type="file" id="profilePicture">
+            </div>
+            <div class="input-box">
+                <span class="details">First Name</span>
+                <input type="text" placeholder="Enter first name" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Last Name</span>
+                <input type="text" placeholder="Enter last name" required>
+            </div>
+            <div class ="input-box">
+                <span class="details">Email</span>
+                <input type="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Phone Number</span>
+                <input type="text" placeholder="Enter your Phone Number" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Date of Birth</span>
+                <input type="date" id="dob" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Password</span>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <!-- Password strength indicator -->
+                <div id="password-strength"></div>
+            </div>
+            <div class="input-box">
+                <span class="details">Confirm Password</span>
+                <input type="password" placeholder="Confirm your password" required>
+            </div>
+        </div>
+        <div class="gender-details">
+            <div class="gender"><h4>Gender</h4></div>
+            <div class="gender-options">
+                <label for="male">
+                    <input type="radio" name="gender" id="male" value="Male" onclick="highlightGender(this)">
+                    <span class="gender-label">Male</span>
+                </label>
+                <label for="female">
+                    <input type="radio" name="gender" id="female" value="Female" onclick="highlightGender(this)">
+                    <span class="gender-label">Female</span>
+                </label>
+                <label for="others">
+                    <input type="radio" name="gender" id="others" value="Others" onclick="highlightGender(this)">
+                    <span class="gender-label">Others</span>
+                </label>
+            </div>
+        </div>
+        <div class="input-box">
+            <input type="checkbox" id="termsAndConditions" required>
+            <label for="termsAndConditions">I agree to abide by your Terms and Conditions.</label>
+        </div>
+        <div class="button">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+<!-- JavaScript for password strength indicator -->
+<script>
+    const passwordInput = document.getElementById('password');
+    const passwordStrengthIndicator = document.getElementById('password-strength');
+
+    passwordInput.addEventListener('input', () => {
+        const password = passwordInput.value;
+        const strength = calculatePasswordStrength(password);
+        updatePasswordStrengthIndicator(strength);
+    });
+
+    function calculatePasswordStrength(password) {
+        // Implement your password strength calculation logic here
+        // You can use regex, length, and other criteria to determine strength
+        // For simplicity, let's assume a basic example here
+
+        if (password.length < 6) {
+            return 'Weak';
+        } else if (password.length < 10) {
+            return 'Medium';
+        } else {
+            return 'Strong';
+        }
+    }
+
+    function updatePasswordStrengthIndicator(strength) {
+        passwordStrengthIndicator.textContent = `Password Strength: ${strength}`;
+    }
+
+    function highlightGender(selectedRadio) {
+        const allRadios = document.querySelectorAll('input[type="radio"]');
+        allRadios.forEach(radio => {
+            const genderLabel = radio.nextElementSibling;
+            if (radio === selectedRadio) {
+                genderLabel.style.color = '#9b59b6';
+            } else {
+                genderLabel.style.color = '#333';
+            }
+        });
+    }
+</script>
+</body>
+</html>
